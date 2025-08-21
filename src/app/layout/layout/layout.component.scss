@@ -1,0 +1,17 @@
+.main-container{
+    position: relative;
+    .setting-container{
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        margin-right: 0px;
+      
+        z-index: 1000; 
+    }
+    .sub-container{
+        margin-left:12px;
+      
+    }
+  
+}
