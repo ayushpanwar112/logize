@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TabService } from '../../services/tab.service';
 
 interface SubItem {
   name: string;
@@ -26,23 +26,19 @@ interface SidebarPanel {
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tabService: TabService) { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 
   showSidebar: boolean = false;
   selectedIndex: number = 0;
-  
+
+  // Populate sidebarPanels with your panel data below
   sidebarPanels: SidebarPanel[] = [
-   
-   
     {
       icon: 'bi bi-speedometer2',
       title: 'Admin',
       sections: [
-        
         {
           name: 'Users & Rights',
           expanded: true,
@@ -72,7 +68,7 @@ export class SidebarComponent implements OnInit {
           ]
         },
         {
-           name: 'Notification Settings',
+          name: 'Notification Settings',
           expanded: false,
           subItems: [
             { name: 'Weekly Reports', route: '/reports/weekly' },
@@ -80,8 +76,8 @@ export class SidebarComponent implements OnInit {
             { name: 'Custom Reports', route: '/reports/custom' }
           ]
         },
-          {
-           name: 'Designer',
+        {
+          name: 'Designer',
           expanded: false,
           subItems: [
             { name: 'Weekly Reports', route: '/reports/weekly' },
@@ -89,19 +85,17 @@ export class SidebarComponent implements OnInit {
             { name: 'Custom Reports', route: '/reports/custom' }
           ]
         },
-          {
-           name: 'Reports',
+        {
+          name: 'Reports',
           expanded: false,
           subItems: [
             { name: 'Weekly Reports', route: '/reports/weekly' },
             { name: 'Monthly Reports', route: '/reports/monthly' },
             { name: 'Custom Reports', route: '/reports/custom' }
           ]
-        },
-        
+        }
       ]
     },
-    
     {
       icon: 'bi bi-people-fill',
       title: 'Operations',
@@ -111,7 +105,7 @@ export class SidebarComponent implements OnInit {
           expanded: false,
           subItems: [
             { name: 'Consignee', route: '/consignee' },
-            { name: 'Billing Party', route: '/users/active' },
+            { name: 'Billing Party', route: '/billingparty' },
             { name: 'Transporter', route: '/users/inactive' },
             { name: 'Vehicle', route: '/users/groups' },
             { name: 'Vehicle Make', route: '/users/groups' },
@@ -120,7 +114,6 @@ export class SidebarComponent implements OnInit {
             { name: 'Employee', route: '/users/groups' },
             { name: 'Content', route: '/users/groups' },
             { name: 'Load Capacity', route: '/users/groups' }
-
           ]
         },
         {
@@ -141,7 +134,7 @@ export class SidebarComponent implements OnInit {
             { name: 'Security Events', route: '/activity/security' }
           ]
         },
-         {
+        {
           name: 'Transportations',
           expanded: false,
           subItems: [
@@ -211,10 +204,6 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  /**
-   * Toggle sidebar visibility and update selected panel
-   
-   */
   toggleSidebar(index: number): void {
     if (this.selectedIndex === index && this.showSidebar) {
       this.showSidebar = false;
@@ -224,90 +213,40 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  closeSidebar(){
+  closeSidebar() {
     this.showSidebar = false;
   }
 
-  /**
-   * Toggle section expansion state
-   
-   */
   toggleSection(section: SidebarSection): void {
     if (section.subItems && section.subItems.length > 0) {
       section.expanded = !section.expanded;
-      
-      // Optional: Close other sections when opening one (accordion behavior)
-      // this.closeOtherSections(section);
     }
   }
 
-  /**
-   * Handle sub-item selection
-
-   */
-  selectSubItem(subItem: SubItem | string): void {
-    // Clear all active states
+  selectSubItem(subItem: SubItem): void {
+    // Clear active states on all sub-items
     this.sidebarPanels.forEach(panel => {
       panel.sections.forEach(section => {
-        if (section.subItems) {
-          section.subItems.forEach(item => {
-            if (typeof item === 'object') {
-              item.active = false;
-            }
-          });
-        }
+        section.subItems?.forEach(item => {
+          if (typeof item === 'object') {
+            item.active = false;
+          }
+        });
       });
     });
 
-    // Set active state for selected item
-    if (typeof subItem === 'object' && subItem.name) {
+    if (subItem && subItem.name) {
       subItem.active = true;
-      
-      // Navigate to route if available
       if (subItem.route) {
-        console.log(`Navigating to: ${subItem.route}`);
-        // Add your router navigation logic here
-        // this.router.navigate([subItem.route]);
+        // Update the currently active tab's title and route via TabService
+        this.tabService.updateActiveTabRoute(subItem.route, subItem.name);
       }
     }
-
-    console.log('Selected sub-item:', subItem);
   }
-
-  /**
-   * Close all other sections except the provided one (accordion behavior)
-  
-   */
-  private closeOtherSections(currentSection: SidebarSection): void {
-    this.sidebarPanels[this.selectedIndex].sections.forEach(section => {
-      if (section !== currentSection) {
-        section.expanded = false;
-      }
-    });
-  }
-
-  /**
-   * Get the current active panel
-  
-   */
-  get currentPanel(): SidebarPanel {
-    return this.sidebarPanels[this.selectedIndex];
-  }
-
-  /**
-   * Check if any section in current panel has expanded state
-  
-   */
-  get hasExpandedSection(): boolean {
-    return this.currentPanel.sections.some(section => section.expanded);
-  }
-
-
 
   sidebarExpanded: boolean = false;
 
-toggleSidebarExpansion(): void {
-  this.sidebarExpanded = !this.sidebarExpanded;
-}
-
+  toggleSidebarExpansion(): void {
+    this.sidebarExpanded = !this.sidebarExpanded;
+  }
 }

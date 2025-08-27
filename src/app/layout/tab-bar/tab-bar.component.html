@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center tab-bar bg-white shadow-sm">
+  <div
+    class="tab px-3 py-2"
+    *ngFor="let tab of tabs"
+    [class.active]="tab.id === activeTab"
+    (click)="selectTab(tab.id)"
+  >
+    {{ tab.title }}
+    <span *ngIf="tab.closable" (click)="$event.stopPropagation(); close(tab.id)" class="ml-2 text-danger">&times;</span>
+  </div>
+  <div class="ml-auto px-3 cursor-pointer" (click)="addNewTab()"> + </div>
+</div>

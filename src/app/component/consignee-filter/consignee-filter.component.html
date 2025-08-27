@@ -1,0 +1,90 @@
+<div class="filter-container fade show d-block advance-filter" tabindex="-1" role="dialog">
+  <div class="" role="document">
+    <div class="modal-content">
+      
+      <!-- Header -->
+      <div class="modal-header filter-head text-white">
+        <h5 class="modal-title">Advance Filter</h5>
+        <button type="button" class="close text-white" (click)="closefilter()" aria-label="advance filter">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Status Section -->
+        <div class="mb-3">
+          <label class="form-label font-weight-bold">Status</label>
+          <select class="form-control" aria-label="Default select example">
+            <option selected>--Select Status Type --</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+        </div>
+        
+        <!-- Search Row -->
+        <div class="row align-items-center mb-3">
+          <div class="col-md-4">
+            <select class="form-control" aria-label="Default select example">
+              <option selected>Regd. Mobile No.</option>
+              <option>Name</option>
+              <option>City</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="form-control" aria-label="Default select example">
+              <option>Contains</option>
+              <option>Equals</option>
+              <option>Starts With</option>
+            </select>
+          </div>
+          <div class="col-md-5">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+        </div>
+        
+        <hr>
+        
+        <!-- Column Filters -->
+        <div>
+          <label class="form-label font-weight-bold">Column Filters</label>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-check mb-2" *ngFor="let item of [
+                   'Whatsapp No.', 'State', 'PIN', 'Name', 'GSTIN', 'Edited User',
+                   'Created Date', 'Country', 'Code', 'Address']">
+                <input class="form-check-input" type="checkbox" checked aria-label="Checkbox for following text input">
+                <label class="form-check-label">{{item}}</label>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-check mb-2" *ngFor="let item of [
+                   'Status', 'Regd. Mobile No.', 'PAN', 'Lanline', 'Email ID',
+                   'Edited Date', 'Created By', 'Contact Person', 'City', 'Action']">
+                <input class="form-check-input" type="checkbox" aria-label="Checkbox for following text input">
+                <label class="form-check-label">{{item}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="modal-footer d-flex justify-content-between">
+        <div>
+          <button class="btn btn-warning mr-2">
+            <i class="bi bi-arrow-clockwise mr-1"></i> Reset
+          </button>
+          <button class="btn btn-danger" (click)="closefilter()">
+            <i class="bi bi-x-circle mr-1"></i> Cancel
+          </button>
+        </div>
+        <button class="btn btn-success">
+          <i class="bi bi-check-circle mr-1"></i> Apply
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>

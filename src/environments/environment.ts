@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://devapi.lozics.io/api',
+  Code:'140-9299-524-DEV'
 };
 
 /*

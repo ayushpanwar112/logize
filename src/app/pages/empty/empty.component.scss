@@ -1,0 +1,95 @@
+/* dashboard-empty.component.scss */
+.dashboard-empty-container {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating gradient shapes */
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+  filter: blur(60px);
+  animation: float 8s ease-in-out infinite alternate;
+}
+.shape1 {
+  width: 200px; height: 200px;
+  background: #FDBA4B;
+  top: 10%; left: 15%;
+  animation-delay: 0s;
+}
+.shape2 {
+  width: 250px; height: 250px;
+  background: #6C63FF;
+  bottom: 15%; right: 10%;
+  animation-delay: 2s;
+}
+.shape3 {
+  width: 150px; height: 150px;
+  background: #34d399;
+  top: 60%; left: 35%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  from { transform: translateY(0) translateX(0); }
+  to { transform: translateY(-30px) translateX(20px); }
+}
+
+.dashboard-empty-content {
+  text-align: center;
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  min-width: 420px;
+  max-width: 540px;
+  position: relative;
+  z-index: 2;
+  transform: scale(0.95);
+  opacity: 0;
+  animation: fadeInZoom 0.8s ease-out forwards;
+}
+
+/* Card fade-in + zoom */
+@keyframes fadeInZoom {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.dashboard-empty-icon {
+  font-size: 70px;
+  color: #FDBA4B;
+  margin-bottom: 16px;
+  animation: spinPulse 4s infinite linear;
+}
+
+/* Gear: slow spin with pulse */
+@keyframes spinPulse {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.primary-action {
+  margin-top: 24px;
+  padding: 12px 36px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FDBA4B, #f97316);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.primary-action:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}

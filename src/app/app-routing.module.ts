@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { ConsigneeComponent } from './pages/consignee/consignee.component';
+import { EmptyComponent } from './pages/empty/empty.component';
+import { BillingPartyComponent } from './pages/billing-party/billing-party.component';
 
 const routes: Routes = [
 
@@ -26,6 +28,13 @@ const routes: Routes = [
     {
       path:'consignee',
       component:ConsigneeComponent
+    },{
+      path:'emptypage',
+      component:EmptyComponent
+    },
+    {
+      path:'billingparty',
+      component:BillingPartyComponent
     }
   ]
   },
@@ -35,7 +44,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
