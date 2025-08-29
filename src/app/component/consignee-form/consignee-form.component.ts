@@ -19,6 +19,7 @@ export class ConsigneeFormComponent implements OnInit {
   @Input() openbtn!: boolean;
   @Output() openbtnChange = new EventEmitter<boolean>();
   @Input() selectedConsignee:any; // to receive data from parent component
+    @Output() refreshList = new EventEmitter<void>();
 
   consigneeFormData: ConsigneeFormClass = new ConsigneeFormClass();
 
@@ -82,6 +83,7 @@ this.consigneeFormData.reason = this.selectedConsignee.Reason;
           this.openbtn = false;
           this.openbtnChange.emit(this.openbtn);
           form.resetForm(); // Reset after save
+          this.refreshList.emit(); // Notify parent to refresh the list
         },
         error: (error) => {
           console.error('Error creating consignee:', error);

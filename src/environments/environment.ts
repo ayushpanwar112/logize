@@ -1,8 +1,16 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+export interface Environment {
+  production: boolean;
+  apiUrl: string;
+  Code: string;
+}
 
-export const environment = {
+
+
+
+export const environment:Environment = {
   production: false,
   apiUrl: 'http://devapi.lozics.io/api',
   Code:'140-9299-524-DEV'

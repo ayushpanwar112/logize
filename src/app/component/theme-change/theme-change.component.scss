@@ -1,0 +1,122 @@
+.setting-container {
+  background-color: var(--color-card);
+  color: var(--primary-text);
+  width: 300px;
+  height: 100%;
+  padding: 1.5rem;
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .setting{
+    border-bottom: 0.8px solid var(--primary-text);
+    .pointer {
+  cursor: pointer;
+}
+
+  }
+  .setting-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+   
+    padding-bottom: 0.5rem;
+  }
+
+  .theme-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: var(--color-card);
+    transition: background-color 0.3s ease;
+
+    .label {
+      font-size: 1rem;
+    }
+
+    .toggle-switch {
+      width: 40px;
+      height: 20px;
+      background-color: var(--secondry-text);
+      border-radius: 10px;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+      }
+
+      &.active::after {
+        transform: translateX(20px);
+      }
+    }
+  }
+
+  .theme-color-picker {
+    .label {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 10px;
+
+      .color-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        &.blue  { background-color: #1c73ff; }
+        &.light { background-color: #a7a7a7; }
+        &.pink   { background-color: #ec4899; }
+        &.orange { background-color: #f97316; }
+        &.green  { background-color: #10b981; }
+        &.gray   { background-color: #6b7280; }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        &.selected {
+          border-color: white;
+          box-shadow: 0 0 0 2px var(--border-blue);
+        }
+      }
+    }
+  }
+
+  .other-settings {
+    .label {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .setting-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+
+      li {
+        padding: 0.5rem 0;
+        font-size: 0.95rem;
+        border-bottom: 1px dashed var(--border-color);
+      }
+    }
+  }
+}

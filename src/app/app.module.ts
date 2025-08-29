@@ -11,6 +11,7 @@ import { ConsigneeFilterComponent } from './component/consignee-filter/consignee
 import { ConsigneeDeleteComponent } from './component/consignee-delete/consignee-delete.component';
 import { EmptyComponent } from './pages/empty/empty.component';
 import { BillingPartyComponent } from './pages/billing-party/billing-party.component';
+import { ThemeChangeComponent } from './component/theme-change/theme-change.component';
 
 
 
@@ -23,6 +24,7 @@ import { BillingPartyComponent } from './pages/billing-party/billing-party.compo
     ConsigneeDeleteComponent,
     EmptyComponent,
     BillingPartyComponent,
+    
    
    
  

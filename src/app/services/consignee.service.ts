@@ -65,7 +65,7 @@ cancleConsignee(params: any) {
   const headers= new HttpHeaders({
     'Code': this.Code
   });
-  return this.http.get(`${this.baseUrl}/Consignee/CancelConsigneeCode`,{headers,params});
+  return this.http.get(`${this.baseUrl}/Consignee/Actions`,{headers,params});
 }
 
 

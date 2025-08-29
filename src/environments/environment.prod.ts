@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+   apiUrl: 'http://devapi.lozics.io/api',
+  Code: '140-9299-524-DEV'
 };

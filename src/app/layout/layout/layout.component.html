@@ -2,23 +2,23 @@
  <app-sidebar></app-sidebar>
 
   <div class="flex-grow-1 d-flex flex-column  sub-container">
-    <app-navbar></app-navbar>
+    <app-navbar (toggleSettings)="toggleSettingSidebar()"></app-navbar>
     <!-- <app-tab-bar></app-tab-bar> -->
 
      <!-- Tab Bar -->
       <div class="position-relative ml-5" >
         <app-tab-bar></app-tab-bar> 
       </div>
-   
+    
 
     <div class=" bg-light overflow-auto m-container ml-5">
       <router-outlet></router-outlet>
     </div>
-  </div>
+  </div> 
   <!-- layout.component.html -->
-<!-- <div class="setting-container bottom-0 top-0" *ngIf="showSettingSidebar">
-  <app-setting (closeSetting)="showSettingSidebar = false"></app-setting>
-</div> -->
+<div class="setting-container bottom-0 top-0" *ngIf="showSettingSidebar">
+  <app-theme-change (closeSetting)="showSettingSidebar = false"></app-theme-change>
+</div>
 
   
 </div>

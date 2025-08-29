@@ -1,0 +1,35 @@
+<div class="setting-container">
+  <!-- Header -->
+<div class="setting d-flex justify-content-between">
+  <h5 class="setting-header">Settings</h5>
+ <i class="bi bi-x-lg pointer" (click)="closeSidebar()"></i>
+
+
+</div>
+  
+
+
+
+<div class="theme-color-picker">
+  <p class="label">Select Theme:</p>
+  <div class="color-options">
+    <button class="color-btn blue" [class.selected]="currentTheme === 'blue'" (click)="setColor('blue')"></button>
+    <button class="color-btn light" [class.selected]="currentTheme === 'light'" (click)="setColor('light')"></button>
+    <button class="color-btn pink" [class.selected]="currentTheme === 'pink'" (click)="setColor('pink')"></button>
+    <button class="color-btn orange" [class.selected]="currentTheme === 'orange'" (click)="setColor('orange')"></button>
+    <button class="color-btn green" [class.selected]="currentTheme === 'green'" (click)="setColor('green')"></button>
+    <button class="color-btn gray" [class.selected]="currentTheme === 'gray'" (click)="setColor('gray')"></button>
+  </div>
+</div>
+
+
+  <!-- Optional: More settings -->
+  <div class="other-settings mt-4">
+    <p class="label">More Settings</p>
+    <ul class="setting-list">
+      <li>🔒 Account Privacy</li>
+      <li>🌐 Language</li>
+      <li>🔔 Notifications</li>
+    </ul>
+  </div>
+</div>

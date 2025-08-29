@@ -24,7 +24,7 @@
     Select Reason <span class="required-asterisk">*</span>
   </label>
   <div class="select-wrapper">
-    <select id="deleteReason" name="deleteReason" class="form-control" required [(ngModel)]="deleteConsignee.Reason">
+    <select id="deleteReason" name="deleteReason" class="form-control" required [(ngModel)]="reason">
      <option *ngFor="let reason of masterList" [value]="reason.Value">
     {{ reason.Text }}
   </option>

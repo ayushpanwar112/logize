@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  selector: 'app-theme-change',
+  templateUrl: './theme-change.component.html',
+  styleUrls: ['./theme-change.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class ThemeChangeComponent implements OnInit {
+  @Output() closeSetting = new EventEmitter<void>();
 
   constructor() { }
 
- showSettingSidebar:boolean= false;
+  
 
-  toggleSettingSidebar() {
-    this.showSettingSidebar = !this.showSettingSidebar;
+    closeSidebar() {
+    this.closeSetting.emit();
   }
 
-
-   currentTheme = 'pink'; // default theme
+ currentTheme = 'pink'; // default theme
 
   ngOnInit() {
     this.currentTheme = localStorage.getItem('app-theme') || 'pink';
@@ -39,5 +39,8 @@ export class LayoutComponent implements OnInit {
     // Add new theme class
     body.classList.add(`${this.currentTheme}-theme`);
   }
+
+
+
 
 }

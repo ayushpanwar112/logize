@@ -191,7 +191,7 @@ export interface consigneeDeleteInterface {
 export class consigneeDeleteClass implements consigneeDeleteInterface {
   Id: number = 0;
   User: string = 'SYSTEM';
-  Reason: string = 'APPROVED DELETE';
+  Reason: string = '';
 }
 
 
@@ -216,4 +216,11 @@ Id: number;
 StatusCode: number;
 User: string;
 Reason: string;
+}
+
+export class consigneeCancelClass implements consigneeCancelInterface {
+  Id: number = 0;
+  StatusCode: number = 0;
+  User: string = 'SYSTEM';
+  Reason: string = '';
 }

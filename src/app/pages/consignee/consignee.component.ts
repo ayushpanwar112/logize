@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ConsigneeService } from '../../services/consignee.service';
-import { ConsigneeApiResponse,  consigneeListClass } from '../../models/consignee-list.model';
+import { ConsigneeApiResponse,    consigneeListClass } from '../../models/consignee-list.model';
 
 @Component({
   selector: 'app-consignee',
@@ -19,15 +19,22 @@ export class ConsigneeComponent implements OnInit {
   isDeleteOpen:boolean=false;
 consogneeListApiData:ConsigneeApiResponse[]=[];//to show data in table
 selectedConsigneeForm:any=null; // to pass data to form component
+selectedStscode:number|null=null;
+searchText: string = '';
+
+
+
 
   consigneeList:consigneeListClass=new consigneeListClass(); // to call api 
+
+  mode:string='LIST'; 
 
 getList(){
   this.consigneeListService.getConsignees(this.consigneeList).subscribe({
     next:(response)=>{
-      //console.log('Consignee List fetched successfully:',response);
+      
       this.consogneeListApiData=response.consignee;
-    //  console.log(this.consogneeListApiData);
+   
     },
     error:(error)=>{
       console.error('Error fetching consignee list:',error);
@@ -51,10 +58,13 @@ getList(){
   openFilter(){
     this.isFilterShow=!this.isFilterShow
   }
-
+resetSearch() {
+  this.getList();
+}
 
   openDeleteModal(id:string){
-    console.log("Delete ID:",id);
+    this.mode='DELETE';
+    
     this.selectedConsigneeId=id;
     this.isDeleteOpen=true;
   }
@@ -65,11 +75,12 @@ getList(){
   }
 
   viewConsignee(id:string){
+    this.mode='VIEW';
      this.consigneeListService.viewConsigneeById(id).subscribe({
       next: (response:any) => {
-    //    console.log('Consignee data fetched successfully:', response.city);
+   
         this.selectedConsigneeForm=response.city;
-     //   console.log(this.selectedConsigneeForm);
+     
         this.openForm();
        
       },
@@ -80,5 +91,20 @@ getList(){
  })
   }
 
+  cancelConsigneeRow(id:string,stscode:number){
+ this.mode='CANCEL';
+this.selectedConsigneeId=id;
+this.selectedStscode=stscode;
+this.isDeleteOpen=true;
+}
+
+
+ @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'F1') {
+      event.preventDefault(); // stops browser help from opening
+      this.openForm();
+    }
+  }
  
 }
